@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void method1()
     {
-        Thunk fun = () -> fib_an(5);
+        Thunk fun = () -> fib_an(7);
         int temp = (int) Continuation.EstablishInitialContinuation(fun);
         String print = Integer.toString(temp);
         Log.d(TAG, print);

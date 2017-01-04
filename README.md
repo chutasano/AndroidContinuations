@@ -2,7 +2,7 @@
 
 This is a continuation (heh) to the Bluetooth Comp. Offloader project I started.
 
-Currently: No errors. The output is wrong though so I need to fix that
+Currently: Ay it actually works. Now I want to make a generation scheme
 
 Goal: implement continuations and try to provide a robust generation scheme for necessary code conversions/generation
 
