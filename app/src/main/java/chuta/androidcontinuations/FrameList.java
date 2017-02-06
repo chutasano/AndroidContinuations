@@ -9,15 +9,13 @@ public class FrameList
     public ContinuationFrame first;
     public FrameList rest;
 
-    public
-    FrameList (ContinuationFrame _first, FrameList _rest)
+    public FrameList (ContinuationFrame _first, FrameList _rest)
     {
         first = _first;
         rest = _rest;
     }
 
-    public static
-    FrameList reverse (FrameList original)
+    public static FrameList reverse (FrameList original)
     {
         FrameList result = null;
         while (original != null) {

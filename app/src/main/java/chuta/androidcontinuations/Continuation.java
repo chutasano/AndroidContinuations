@@ -6,14 +6,11 @@ import android.util.Log;
  * Created by chuta on 1/4/2017.
  */
 
-//public delegate object Thunk(); use function interfaces
 
 
 
 public class Continuation
 {
-    // Private inner class
-
     public static Object EstablishInitialContinuation (Thunk thunk) //static
     {
         while (true) {
@@ -74,23 +71,7 @@ public class Continuation
         throw new SaveContinuationException();
     }
 
-    class CWCC_frame0 extends ContinuationFrame
-    {
-        ContinuationReceiver receiver;
-
-        public CWCC_frame0(ContinuationReceiver receiver)
-        {
-            this.receiver = receiver;
-        }
-
-        @Override
-        public Object Invoke (Object return_value)
-        {
-            return receiver.run((Continuation) return_value);
-        }
-    }
-
-    public Object CWCC (ContinuationReceiver receiver) throws SaveContinuationException
+    public static Object CWCC (ContinuationReceiver receiver) throws SaveContinuationException
     {
         try {
             BeginUnwind();

@@ -6,10 +6,27 @@ package chuta.androidcontinuations;
 
 public class ContinuationDefinitions {
 
+    static int timer = 0;
+    public static int fib_new(int x, int breaks) throws SaveContinuationException
+    {
+        if (timer == breaks)
+        {
+            timer = 0;
+            Thunk fun = () -> fib_an(x);
+            return (int) Continuation.EstablishInitialContinuation(fun);
+            //ContinuationReceiver(fib_an(x));
+        }
+        else
+        {
+            timer++;
+        }
+        return 0;
+    }
+
     public static int fib_an (int x) throws SaveContinuationException
     {
         if (x < 2)
-            return x;
+            return 1;
         else {
             int temp0;
             try {
@@ -20,7 +37,6 @@ public class ContinuationDefinitions {
                 e.Extend(new fib_frame0(x));
                 throw e;
             }
-
             return fib_an0 (temp0, x);
         }
     }
@@ -41,6 +57,8 @@ public class ContinuationDefinitions {
 
     public static int fib_an1 (int temp1, int temp0)
     {
+
         return temp0 + temp1;
     }
+
 }
