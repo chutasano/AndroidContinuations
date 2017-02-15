@@ -18,7 +18,7 @@ public class Continuation
                 return InitialContinuationAux (thunk);
             }
             catch (WithinInitialContinuationException wic) {
-                thunk = wic.thunk;
+                return thunk;
             }
         }
     }
@@ -28,16 +28,17 @@ public class Continuation
             return thunk.run();
         }
         catch (SaveContinuationException sce) {
+            Thunk currentk;
             try {
                 Continuation k = sce.toContinuation();
-                Thunk currentk = () -> k.Reload(k);
-                throw new WithinInitialContinuationException(currentk);
+                currentk = () -> k.Reload(k);
             }
             catch (Exception e)
             {
-                Log.e("AHH", e.toString());
+                Log.e("TAG", "Some error");
                 return null;
             }
+            throw new WithinInitialContinuationException(currentk);
         }
     }
 
@@ -48,6 +49,7 @@ public class Continuation
         // The new frames don't know what the continuation is below them.
         // We take them one by one and push them onto the old_frames
         // while setting their continuation to the list of frames below.
+        // TODO maybe optimize this??
         frames = old_frames;
         while (new_frames != null) {
             ContinuationFrame new_frame = new_frames.first;
@@ -83,5 +85,4 @@ public class Continuation
         // Should never get here.
         return null;
     }
-
 }

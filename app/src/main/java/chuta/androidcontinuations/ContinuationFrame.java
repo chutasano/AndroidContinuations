@@ -3,6 +3,7 @@ package chuta.androidcontinuations;
 
 import static chuta.androidcontinuations.ContinuationDefinitions.fib_an0;
 import static chuta.androidcontinuations.ContinuationDefinitions.fib_an1;
+import static chuta.androidcontinuations.ContinuationDefinitions.*;
 
 /**
  * Created by chuta on 1/4/2017.
@@ -74,5 +75,32 @@ class fib_frame1 extends ContinuationFrame {
     @Override
     Object Invoke(Object continue_value) throws SaveContinuationException {
         return fib_an1((int) continue_value, this.temp0);
+    }
+}
+
+class fib_frame_newa extends ContinuationFrame {
+    int x;
+    fib_frame_newa(int x) { this.x = x;}
+    @Override
+    Object Invoke(Object continue_value) throws SaveContinuationException {
+        return fib_new1(this.x);
+    }
+}
+
+class fib_frame_new0 extends ContinuationFrame {
+    int x;
+    fib_frame_new0(int x) { this.x = x;}
+    @Override
+    Object Invoke(Object continue_value) throws SaveContinuationException {
+        return fib_new2((int) continue_value, this.x);
+    }
+}
+
+class fib_frame_new1 extends ContinuationFrame {
+    int x;
+    fib_frame_new1(int x) { this.x = x;}
+    @Override
+    Object Invoke (Object continue_value) throws SaveContinuationException {
+        return fib_new3((int) continue_value, this.x);
     }
 }
