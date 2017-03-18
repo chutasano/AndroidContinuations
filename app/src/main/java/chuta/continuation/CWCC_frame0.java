@@ -1,4 +1,4 @@
-package chuta.androidcontinuations;
+package chuta.continuation;
 
 /**
  * Created by chuta on 1/5/2017.

@@ -1,4 +1,4 @@
-package chuta.androidcontinuations;
+package chuta.continuation;
 
 import android.util.Log;
 
@@ -43,6 +43,11 @@ public class Continuation
 
     FrameList frames;
 
+    public FrameList getFrames()
+    {
+        return this.frames;
+    }
+
     public Continuation (FrameList new_frames, FrameList old_frames) throws Exception
     {
         // The new frames don't know what the continuation is below them.
@@ -67,7 +72,7 @@ public class Continuation
         return rev.first.Reload (rev.rest, restart_value);
     }
 
-    static void BeginUnwind() throws SaveContinuationException
+    public static void BeginUnwind() throws SaveContinuationException
     {
         throw new SaveContinuationException();
     }

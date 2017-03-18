@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import chuta.continuation.Continuation;
+import chuta.continuation.Thunk;
+
 import static chuta.androidcontinuations.ContinuationDefinitions.fib_an;
 import static chuta.androidcontinuations.ContinuationDefinitions.fib_new0;
 
@@ -12,7 +15,7 @@ import static chuta.androidcontinuations.ContinuationDefinitions.fib_new0;
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "continuations";
     Thunk fun = () -> fib_new0(37);
-    Thunk fun3 = () -> fib_new0(35);
+    Thunk fun3 = () -> fib_new0(14);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
