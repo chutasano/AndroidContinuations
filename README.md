@@ -1,6 +1,5 @@
 ##Continuations on Android
 
-On halt as of 1/20/17. I plan to resume soon though!
 
 This is a continuation (heh) to the Bluetooth Comp. Offloader project I started.
 
@@ -50,3 +49,8 @@ Assuming an eventual runtime test shows that the overheads are not too bad, I pl
 
 - Converting code to ANF
 - Generate frame classes for functions with first class continuation capability
+
+
+##Notes
+
+- 2000 stackframes ~ 0.01MB of RAM

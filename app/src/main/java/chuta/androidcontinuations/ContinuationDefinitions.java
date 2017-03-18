@@ -9,7 +9,7 @@ import android.util.Log;
 public class ContinuationDefinitions {
 
     static int timer = 0;
-    static int breaks = 10;
+    static int breaks = 500;
 
     public static Object asdf(Continuation cont)
     {
@@ -28,7 +28,7 @@ public class ContinuationDefinitions {
         timer++;
         if (timer == breaks)
         {
-     //       timer = 0;
+            timer = 0;
             try
             {
                 Continuation.BeginUnwind();

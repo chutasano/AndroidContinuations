@@ -12,6 +12,7 @@ import static chuta.androidcontinuations.ContinuationDefinitions.fib_new0;
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "continuations";
     Thunk fun = () -> fib_new0(37);
+    Thunk fun3 = () -> fib_new0(35);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,16 +27,9 @@ public class MainActivity extends AppCompatActivity {
         else if (v == findViewById(R.id.button2)) {
             method2();
         }
-    }
-
-    public void buttonClick2(View v)
-    {
-        method2();
-    }
-
-    public void buttonClick3(View v)
-    {
-        method3();
+        else if (v == findViewById(R.id.button3)) {
+            method3();
+        }
     }
 
     private void method1()
@@ -46,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Fibcontinuation end");
         String print = Integer.toString(temp);
         Log.d(TAG, print);
-        Log.d(TAG, "Fib start");
+    /*    Log.d(TAG, "Fib start");
         int a = fib_nonc(37);
         Log.d(TAG, "Fib end");
         Log.d(TAG, Integer.toString(a));
@@ -54,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Thunk fun2 = () -> fib_an(8);
         int temp2 = (int) Continuation.EstablishInitialContinuation(fun2);
         Log.d(TAG, Integer.toString(temp2));
-        Log.d(TAG, "Fibcontinuation end");
+        Log.d(TAG, "Fibcontinuation end");*/
     }
 
     private void method2()
@@ -76,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         {
             String print = Integer.toString((int)temp);
             Log.d(TAG, print);
+            fun = () -> fib_new0(37);
         }
 
     }
@@ -91,7 +86,25 @@ public class MainActivity extends AppCompatActivity {
     }
     private void method3()
     {
+        Log.d(TAG, "Fibcontinuation3 start");
+        Object temp = Continuation.EstablishInitialContinuation(fun3);
+        Log.d(TAG, "Fibcontinuation end");
 
+        if (temp == null)
+        {
+            Log.d(TAG, "Fibcontinuation fail");
+        }
+        else if (temp instanceof Thunk)
+        {
+            Log.d(TAG, "got continuation");
+            fun3 = (Thunk)temp;
+        }
+        else
+        {
+            String print = Integer.toString((int)temp);
+            Log.d(TAG, print);
+            fun3 = () -> fib_new0(9);
+        }
     }
 
 

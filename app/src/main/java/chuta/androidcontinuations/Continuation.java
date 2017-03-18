@@ -13,14 +13,13 @@ public class Continuation
 {
     public static Object EstablishInitialContinuation (Thunk thunk) //static
     {
-        while (true) {
             try {
                 return InitialContinuationAux (thunk);
             }
             catch (WithinInitialContinuationException wic) {
-                return thunk;
+                return wic.thunk;
             }
-        }
+
     }
     public static Object InitialContinuationAux (Thunk thunk) throws WithinInitialContinuationException //static
     {
