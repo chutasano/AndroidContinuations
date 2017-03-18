@@ -1,6 +1,17 @@
 ##Continuations on Android
 
-On halt as of 1/20/17. I plan to resume soon though!
+
+#INFO
+
+This branch is obsolete. I attempted to make this a library module, but seems like there is no support for lambdas in non-app modules at the moment.
+
+
+
+
+
+
+
+
 
 This is a continuation (heh) to the Bluetooth Comp. Offloader project I started.
 
@@ -50,3 +61,11 @@ Assuming an eventual runtime test shows that the overheads are not too bad, I pl
 
 - Converting code to ANF
 - Generate frame classes for functions with first class continuation capability
+
+
+##Continuation Frame Implementation notes
+
+So it seems like there are two approaches to handle more than single line functions:
+
+- Make a frame class per function and essentially split the function into a bunch of single line statements (current implementation)
+- Have a branch at the top, add additional input to the function, "essentially a line#" to implement a goto esque style

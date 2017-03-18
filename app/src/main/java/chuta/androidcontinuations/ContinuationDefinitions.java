@@ -2,6 +2,11 @@ package chuta.androidcontinuations;
 
 import android.util.Log;
 
+import chuta.continuationslib.Continuation;
+import chuta.continuationslib.ContinuationReceiver;
+import chuta.continuationslib.SaveContinuationException;
+
+
 /**
  * Created by chuta on 1/4/2017.
  */
@@ -13,7 +18,7 @@ public class ContinuationDefinitions {
 
     public static Object asdf(Continuation cont)
     {
-        Log.d("TAG", "Paused: " + cont.frames.toString());
+        Log.d("TAG", "Paused: " + cont.getFrames().toString());
         return cont;
     }
     public static Object pause () throws SaveContinuationException
