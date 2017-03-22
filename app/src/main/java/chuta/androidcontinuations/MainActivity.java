@@ -5,6 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 import chuta.continuation.Continuation;
 import chuta.continuation.Thunk;
 
@@ -15,7 +24,7 @@ import static chuta.androidcontinuations.ContinuationDefinitions.fib_new0;
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "continuations";
     Thunk fun = () -> fib_new0(37);
-    Thunk fun3 = () -> fib_new0(14);
+    Thunk fun3 = (Thunk & Serializable)() -> fib_new0(14);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +44,48 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void method1()
+    private void method1() {
+        //reload method
+        try {
+            //converts Thunk lambda to bytes
+            byte[] bytes;
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutput out = null;
+            out = new ObjectOutputStream(bos);
+            out.writeObject(fun3);
+            out.flush();
+            bytes = bos.toByteArray();
+            bos.close();
+
+
+            //re initializes fun3 from the read bytes
+            fun3 = null;
+            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+            ObjectInput in = null;
+            in = new ObjectInputStream(bis);
+            try {
+                fun3 = (Thunk)in.readObject();
+            } catch (ClassNotFoundException e) {
+                Log.e(TAG, e.toString());
+            }
+            in.close();
+        }
+        catch (IOException e) {
+            Log.e(TAG, e.toString());
+        }
+
+    }
+
+    private void runfib()
     {
+        /*
         Log.d(TAG, "Fibcontinuation start");
         Thunk fun1 = () -> fib_an(37);
         int temp = (int) Continuation.EstablishInitialContinuation(fun1);
         Log.d(TAG, "Fibcontinuation end");
         String print = Integer.toString(temp);
         Log.d(TAG, print);
+        */
     /*    Log.d(TAG, "Fib start");
         int a = fib_nonc(37);
         Log.d(TAG, "Fib end");
@@ -106,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         {
             String print = Integer.toString((int)temp);
             Log.d(TAG, print);
-            fun3 = () -> fib_new0(9);
+            fun3 = (Thunk & Serializable)() -> fib_new0(14); //reset
         }
     }
 

@@ -1,5 +1,7 @@
 package chuta.continuation;
 
+import java.io.Serializable;
+
 /**
  * Created by chuta on 1/4/2017.
  */

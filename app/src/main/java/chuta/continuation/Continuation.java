@@ -2,6 +2,8 @@ package chuta.continuation;
 
 import android.util.Log;
 
+import java.io.Serializable;
+
 /**
  * Created by chuta on 1/4/2017.
  */
@@ -9,7 +11,7 @@ import android.util.Log;
 
 
 
-public class Continuation
+public class Continuation implements Serializable
 {
     public static Object EstablishInitialContinuation (Thunk thunk) //static
     {
@@ -30,7 +32,7 @@ public class Continuation
             Thunk currentk;
             try {
                 Continuation k = sce.toContinuation();
-                currentk = () -> k.Reload(k);
+                currentk = (Thunk & Serializable)() -> k.Reload(k);
             }
             catch (Exception e)
             {

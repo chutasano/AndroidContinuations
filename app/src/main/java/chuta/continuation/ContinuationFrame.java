@@ -1,11 +1,13 @@
 package chuta.continuation;
 
 
+import java.io.Serializable;
+
 /**
  * Created by chuta on 1/4/2017.
  */
 
-public abstract class ContinuationFrame {
+public abstract class ContinuationFrame implements Serializable{
     public FrameList continuation;
 
     public Object Reload (FrameList frames_above, Object restart_value) throws SaveContinuationException
