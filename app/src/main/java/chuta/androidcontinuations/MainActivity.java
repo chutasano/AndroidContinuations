@@ -17,9 +17,7 @@ import java.io.Serializable;
 import chuta.continuation.Continuation;
 import chuta.continuation.Thunk;
 
-import static chuta.androidcontinuations.ContinuationDefinitions.fib_an;
 import static chuta.androidcontinuations.ContinuationDefinitions.fib_new0;
-
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "continuations";
@@ -44,36 +42,53 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void method1() {
-        //reload method
+    private byte[] getContinuationBytes(Thunk f)
+    {
         try {
             //converts Thunk lambda to bytes
             byte[] bytes;
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutput out = null;
+            ObjectOutput out;
             out = new ObjectOutputStream(bos);
-            out.writeObject(fun3);
+            out.writeObject(f);
             out.flush();
             bytes = bos.toByteArray();
             bos.close();
-            Log.d(TAG, "Thunk size in bytes: " + Integer.toString(bytes.length));
-
-            //re initializes fun3 from the read bytes
-            fun3 = null;
-            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-            ObjectInput in = null;
-            in = new ObjectInputStream(bis);
-            try {
-                fun3 = (Thunk)in.readObject();
-            } catch (ClassNotFoundException e) {
-                Log.e(TAG, e.toString());
-            }
-            in.close();
+            return bytes;
         }
         catch (IOException e) {
             Log.e(TAG, e.toString());
         }
+        return null;
+    }
 
+    private Thunk reinitializeThunk(byte[] bytes) {
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+            ObjectInput in;
+            Thunk fun = null;
+            in = new ObjectInputStream(bis);
+            try {
+                fun = (Thunk) in.readObject();
+            } catch (ClassNotFoundException e) {
+                Log.e(TAG, e.toString());
+            }
+            in.close();
+            return fun;
+        }catch (IOException e) {
+            Log.e(TAG, e.toString());
+        }
+        return null;
+    }
+
+    private void method1() {
+        //reload method
+        byte[] bytes = getContinuationBytes(fun3);
+        fun3 = reinitializeThunk(bytes);
+        if (fun3 == null)
+        {
+            Log.e(TAG, "Ooops, reloading failed...");
+        }
     }
 
     private void runfib()
@@ -118,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, print);
             fun = () -> fib_new0(37);
         }
-
     }
 
     int fib_nonc(int n)
@@ -152,6 +166,4 @@ public class MainActivity extends AppCompatActivity {
             fun3 = (Thunk & Serializable)() -> fib_new0(14); //reset
         }
     }
-
-
 }

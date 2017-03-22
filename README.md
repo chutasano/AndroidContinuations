@@ -18,7 +18,6 @@ Heavily referenced a C# example: http://www.ccs.neu.edu/racket/pubs/stackhack4.h
 
 - I did some small scale testing by implementing a non-continuation version of the same Fibonacci algorithm. I ran fib(37) on both, and it turned out the continuation version takes ~0.9seconds while the non-continuation version takes ~1.3 seconds. So I guess there must be some weird optimization that Dalvik can do as a result of the way I write the continuation version? Maybe ANF is the key here... Very interesting
 
-=======
 
 ## Continuations
 
@@ -54,3 +53,4 @@ Assuming an eventual runtime test shows that the overheads are not too bad, I pl
 ## Notes
 
 - 2000 stackframes ~ 0.01MB of RAM
+- Definitely a HUGE upgrade over sending APKs, in the megabytes
