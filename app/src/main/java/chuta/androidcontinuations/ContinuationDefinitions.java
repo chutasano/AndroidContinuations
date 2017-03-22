@@ -15,7 +15,7 @@ public class ContinuationDefinitions {
     static int timer = 0;
     static int breaks = 500;
 
-    public static Object asdf(Continuation cont)
+    public static Object asdf(Continuation cont) //good function name
     {
         Log.d("TAG", "Paused: " + cont.getFrames().toString());
         return cont;

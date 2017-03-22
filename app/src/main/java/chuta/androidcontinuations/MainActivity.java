@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             out.flush();
             bytes = bos.toByteArray();
             bos.close();
-
+            Log.d(TAG, "Thunk size in bytes: " + Integer.toString(bytes.length));
 
             //re initializes fun3 from the read bytes
             fun3 = null;
