@@ -105,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
         else if (v == findViewById(R.id.button3)) {
             method3();
         }
+        else if (v == findViewById(R.id.button4)) {
+            method4();
+        }
     }
 
     private byte[] getContinuationBytes(Thunk f)
@@ -253,8 +256,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void method1() {
         Intent serverIntent = new Intent(this, DeviceListActivity.class);
-        startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_INSECURE);
-        //startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+        //startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_INSECURE);
+        startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
         //reload method
         /*byte[] bytes = getContinuationBytes(fun3);
         fun3 = reinitializeThunk(bytes);
@@ -323,5 +326,10 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, print);
             fun3 = (Thunk & Serializable)() -> fib_new0(14); //reset
         }
+    }
+    private void method4()
+    {
+        Log.d(TAG, "Breaks: " + Integer.toString(ContinuationDefinitions.breaks));
+        ContinuationDefinitions.breaks++;
     }
 }

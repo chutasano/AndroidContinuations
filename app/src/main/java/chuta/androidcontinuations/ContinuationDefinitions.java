@@ -17,7 +17,7 @@ public class ContinuationDefinitions {
 
     public static Object asdf(Continuation cont) //good function name
     {
-        Log.d("TAG", "Paused: " + cont.getFrames().toString());
+        Log.d("TAG", "Paused: " + cont.getFrames().toString() + "timer: " + Integer.toString(timer));
         return cont;
     }
     public static Object pause () throws SaveContinuationException

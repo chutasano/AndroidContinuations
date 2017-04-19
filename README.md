@@ -54,3 +54,7 @@ Assuming an eventual runtime test shows that the overheads are not too bad, I pl
 
 - 2000 stackframes ~ 0.01MB of RAM
 - Definitely a HUGE upgrade over sending APKs, in the megabytes
+
+
+## On Statics
+- Statics are not shared with the continuations (ie: uses its local copy)
