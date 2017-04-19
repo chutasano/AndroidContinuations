@@ -58,3 +58,5 @@ Assuming an eventual runtime test shows that the overheads are not too bad, I pl
 
 ## On Statics
 - Statics are not shared with the continuations (ie: uses its local copy)
+- You don't need the same static function definition (all it cares is the name + return type). This means you can essentially emulate an "extern" function
+- package names matter (should be the same)

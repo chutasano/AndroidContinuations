@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void method1() {
         Intent serverIntent = new Intent(this, DeviceListActivity.class);
-        //startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_INSECURE);
+        //startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_INSECURE); // this guy fails
         startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
         //reload method
         /*byte[] bytes = getContinuationBytes(fun3);
@@ -293,7 +293,6 @@ public class MainActivity extends AppCompatActivity {
     {
         //send continuation
         sendBytes(getContinuationBytes(fun3));
-
     }
 
     int fib_nonc(int n)
@@ -324,6 +323,7 @@ public class MainActivity extends AppCompatActivity {
         {
             String print = Integer.toString((int)temp);
             Log.d(TAG, print);
+            mLogAdapter.add(print);
             fun3 = (Thunk & Serializable)() -> fib_new0(14); //reset
         }
     }
