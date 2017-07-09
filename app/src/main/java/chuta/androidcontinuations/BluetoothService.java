@@ -38,6 +38,9 @@ import java.util.UUID;
  * incoming connections, a thread for connecting with a device, and a
  * thread for performing data transmissions when connected.
  */
+
+// from Google's Bluetooth Chat demo
+
 public class BluetoothService {
     // Debugging
     private static final String TAG = "ContiunationBT";
