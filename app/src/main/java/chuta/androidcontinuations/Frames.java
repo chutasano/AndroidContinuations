@@ -4,14 +4,12 @@ package chuta.androidcontinuations;
 import chuta.continuationslib.ContinuationFrame;
 import chuta.continuationslib.SaveContinuationException;
 
-import static chuta.androidcontinuations.ContinuationDefinitions.fib_an0;
-import static chuta.androidcontinuations.ContinuationDefinitions.fib_an1;
-import static chuta.androidcontinuations.ContinuationDefinitions.*;
+
+
 
 /**
  * Created by chuta on 1/4/2017.
  */
-
 
 
 //TODO generate per method
@@ -30,7 +28,7 @@ class fib_frame0 extends ContinuationFrame {
     // Restart method
     @Override
     public Object Invoke(Object continue_value) throws SaveContinuationException {
-        return fib_an0((int) continue_value, this.x);
+        return ContinuationDefinitions.fib_an0((int) continue_value, this.x);
     }
 }
 
@@ -48,7 +46,7 @@ class fib_frame1 extends ContinuationFrame {
     // Restart method
     @Override
     public Object Invoke(Object continue_value) throws SaveContinuationException {
-        return fib_an1((int) continue_value, this.temp0);
+        return ContinuationDefinitions.fib_an1((int) continue_value, this.temp0);
     }
 }
 
@@ -57,7 +55,7 @@ class fib_frame_newa extends ContinuationFrame {
     fib_frame_newa(int x) { this.x = x;}
     @Override
     public Object Invoke(Object continue_value) throws SaveContinuationException {
-        return fib_new1(this.x);
+        return ContinuationDefinitions.fib_new1(this.x);
     }
 }
 
@@ -66,7 +64,7 @@ class fib_frame_new0 extends ContinuationFrame {
     fib_frame_new0(int x) { this.x = x;}
     @Override
     public Object Invoke(Object continue_value) throws SaveContinuationException {
-        return fib_new2((int) continue_value, this.x);
+        return ContinuationDefinitions.fib_new2((int) continue_value, this.x);
     }
 }
 
@@ -75,6 +73,6 @@ class fib_frame_new1 extends ContinuationFrame {
     fib_frame_new1(int x) { this.x = x;}
     @Override
     public Object Invoke (Object continue_value) throws SaveContinuationException {
-        return fib_new3((int) continue_value, this.x);
+        return ContinuationDefinitions.fib_new3((int) continue_value, this.x);
     }
 }

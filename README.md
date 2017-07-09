@@ -1,5 +1,6 @@
-##Continuations on Android
+## Continuations on Android
 
+<<<<<<< HEAD
 
 #INFO
 
@@ -12,6 +13,8 @@ This branch is obsolete. I attempted to make this a library module, but seems li
 
 
 
+=======
+>>>>>>> master
 
 This is a continuation (heh) to the Bluetooth Comp. Offloader project I started.
 
@@ -26,17 +29,16 @@ Heavily referenced a C# example: http://www.ccs.neu.edu/racket/pubs/stackhack4.h
 - I hate the whole enforcing each class into a seperate file by java
 
 
-#Testing
+# Testing
 
 - I did some small scale testing by implementing a non-continuation version of the same Fibonacci algorithm. I ran fib(37) on both, and it turned out the continuation version takes ~0.9seconds while the non-continuation version takes ~1.3 seconds. So I guess there must be some weird optimization that Dalvik can do as a result of the way I write the continuation version? Maybe ANF is the key here... Very interesting
 
-=======
 
-##Continuations
+## Continuations
 
 Continuations are representations of the program's runtime state. An example of a continuation may be a simple dump of the stack and the heap. First class continuations in java mean that the program's runtime state is a class that inherits object. Unfortunately, Java is structurally inefficient with first class continuations, but there is a way! We use exception handling to force java to capture the stack frame and manually keep track of the "heap" by creating a frame class for every function that stores the variable values at given states within a function.
 
-##How good is it?
+## How good is it?
 
 From http://www.ccs.neu.edu/racket/pubs/stackhack4.html:
 ```
@@ -55,7 +57,7 @@ Code annotation introduces a number of try/catch blocks. This, too, will increas
 
 However, as stated, it depends on the implementation of the JVM. I'm mainly concerned with Dalvik, so I plan to test a lot.
 
-##Future
+## Future
 
 Assuming an eventual runtime test shows that the overheads are not too bad, I plan to automate the following (which are at the moment required code changes by the programmer)
 
@@ -63,9 +65,22 @@ Assuming an eventual runtime test shows that the overheads are not too bad, I pl
 - Generate frame classes for functions with first class continuation capability
 
 
+<<<<<<< HEAD
 ##Continuation Frame Implementation notes
 
 So it seems like there are two approaches to handle more than single line functions:
 
 - Make a frame class per function and essentially split the function into a bunch of single line statements (current implementation)
 - Have a branch at the top, add additional input to the function, "essentially a line#" to implement a goto esque style
+=======
+## Notes
+
+- 2000 stackframes ~ 0.01MB of RAM
+- Definitely a HUGE upgrade over sending APKs, in the megabytes
+
+
+## On Statics
+- Statics are not shared with the continuations (ie: uses its local copy)
+- You don't need the same static function definition (all it cares is the name + return type). This means you can essentially emulate an "extern" function
+- package names matter (should be the same)
+>>>>>>> master

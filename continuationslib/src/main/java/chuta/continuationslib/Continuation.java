@@ -2,6 +2,8 @@ package chuta.continuationslib;
 
 import android.util.Log;
 
+import java.io.Serializable;
+
 /**
  * Created by chuta on 1/4/2017.
  */
@@ -9,18 +11,17 @@ import android.util.Log;
 
 
 
-public class Continuation
+public class Continuation implements Serializable
 {
     public static Object EstablishInitialContinuation (Thunk thunk) //static
     {
-        while (true) {
             try {
                 return InitialContinuationAux (thunk);
             }
             catch (WithinInitialContinuationException wic) {
-                return thunk;
+                return wic.thunk;
             }
-        }
+
     }
     public static Object InitialContinuationAux (Thunk thunk) throws WithinInitialContinuationException //static
     {
@@ -31,7 +32,7 @@ public class Continuation
             Thunk currentk;
             try {
                 Continuation k = sce.toContinuation();
-                currentk = () -> k.Reload(k);
+                currentk = (Thunk & Serializable)() -> k.Reload(k);
             }
             catch (Exception e)
             {
@@ -48,6 +49,7 @@ public class Continuation
     {
         return this.frames;
     }
+
     public Continuation (FrameList new_frames, FrameList old_frames) throws Exception
     {
         // The new frames don't know what the continuation is below them.

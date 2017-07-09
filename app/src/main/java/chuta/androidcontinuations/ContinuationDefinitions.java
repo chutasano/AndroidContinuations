@@ -14,11 +14,11 @@ import chuta.continuationslib.SaveContinuationException;
 public class ContinuationDefinitions {
 
     static int timer = 0;
-    static int breaks = 10;
+    static int breaks = 500;
 
-    public static Object asdf(Continuation cont)
+    public static Object asdf(Continuation cont) //good function name
     {
-        Log.d("TAG", "Paused: " + cont.getFrames().toString());
+        Log.d("TAG", "Paused: " + cont.getFrames().toString() + "timer: " + Integer.toString(timer));
         return cont;
     }
     public static Object pause () throws SaveContinuationException
@@ -33,7 +33,7 @@ public class ContinuationDefinitions {
         timer++;
         if (timer == breaks)
         {
-     //       timer = 0;
+            timer = 0;
             try
             {
                 Continuation.BeginUnwind();

@@ -1,10 +1,12 @@
 package chuta.continuationslib;
 
+import java.io.Serializable;
+
 /**
  * Created by chuta on 1/4/2017.
  */
 
-public class FrameList
+public class FrameList implements Serializable
 {
     public ContinuationFrame first;
     public FrameList rest;
