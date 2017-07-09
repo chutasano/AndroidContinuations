@@ -3,7 +3,9 @@
 /.idea/
 *.apk
 *.iml
+*.jar
 .DS_Store
+/gradle/
 /build
 /captures
 /app/build
