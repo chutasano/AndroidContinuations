@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import chuta.continuationslib.Continuation;
+import chuta.continuationslib.Thunk;
+
 import static chuta.androidcontinuations.ContinuationDefinitions.fib_an;
 import static chuta.androidcontinuations.ContinuationDefinitions.fib_new0;
 
