@@ -1,4 +1,9 @@
-## Continuations on Android
+## Branches
+
+- master contains AndroidStudio 3.0 (still not the stable release) only things. Mainly, I migrated away from jack (which was how I got lambdas working before)
+- jack contains the previous (now unmaintained) code. This will work on pre-Android 3.0
+
+# Continuations on Android
 
 
 This is a continuation (heh) to the Bluetooth Comp. Offloader project I started.
@@ -14,7 +19,7 @@ Heavily referenced a C# example: http://www.ccs.neu.edu/racket/pubs/stackhack4.h
 - I hate the whole enforcing each class into a seperate file by java, but oh well
 
 
-# Testing
+## Testing
 
 - I did some small scale testing by implementing a non-continuation version of the same Fibonacci algorithm. I ran fib(37) on both, and it turned out the continuation version takes ~0.9seconds while the non-continuation version takes ~1.3 seconds. So I guess there must be some weird optimization that Dalvik can do as a result of the way I write the continuation version? Maybe ANF is the key here... Very interesting
 
