@@ -1,24 +1,9 @@
 ## Continuations on Android
 
-<<<<<<< HEAD
-
-#INFO
-
-This branch is obsolete. I attempted to make this a library module, but seems like there is no support for lambdas in non-app modules at the moment.
-
-
-
-
-
-
-
-
-=======
->>>>>>> master
 
 This is a continuation (heh) to the Bluetooth Comp. Offloader project I started.
 
-Currently: Ay it actually works. Now I want to make a generation scheme
+Currently: The small demo works
 
 Goal: implement first class continuations and try to provide a robust generation scheme for necessary code conversions/generation
 
@@ -26,7 +11,7 @@ Heavily referenced a C# example: http://www.ccs.neu.edu/racket/pubs/stackhack4.h
 
 - Used lambdas (java 1.8, see build.gradle for app) instead of delegates (C# only)
 
-- I hate the whole enforcing each class into a seperate file by java
+- I hate the whole enforcing each class into a seperate file by java, but oh well
 
 
 # Testing
@@ -65,22 +50,16 @@ Assuming an eventual runtime test shows that the overheads are not too bad, I pl
 - Generate frame classes for functions with first class continuation capability
 
 
-<<<<<<< HEAD
-##Continuation Frame Implementation notes
 
-So it seems like there are two approaches to handle more than single line functions:
-
-- Make a frame class per function and essentially split the function into a bunch of single line statements (current implementation)
-- Have a branch at the top, add additional input to the function, "essentially a line#" to implement a goto esque style
-=======
 ## Notes
 
 - 2000 stackframes ~ 0.01MB of RAM
 - Definitely a HUGE upgrade over sending APKs, in the megabytes
+- Class names and package names matter. The shorter, the smaller the stack frames will be (this might be because I'm only running in debug mode because I expected Android to rename symbols...)
+
 
 
 ## On Statics
-- Statics are not shared with the continuations (ie: uses its local copy)
-- You don't need the same static function definition (all it cares is the name + return type). This means you can essentially emulate an "extern" function
+- Statics are not shared with the continuations (ie: uses its local copy) as expected
+- You don't need the same static function definition (all it cares is the name,return type, and arg type). This means you can essentially emulate an "extern" function
 - package names matter (should be the same)
->>>>>>> master
